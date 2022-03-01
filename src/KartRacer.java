@@ -15,7 +15,7 @@ public class KartRacer extends JFrame {
         rt = new RaceTrack();
         rt.setBounds(0,0,850,650);  // Location within JFrame
         rt.addKeyListener(rt);
-        rt.setFocusable(true); // Allows it to respond to focus related events
+        rt.setFocusable(true); // Allows for response to focus related events
 
         cp.add(rt);
     }

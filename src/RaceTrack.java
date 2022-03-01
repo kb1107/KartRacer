@@ -30,7 +30,7 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         blueKartLabel.setBounds(blueKart.getLocationX(), blueKart.getLocationY(), 50, 50); // start just behind start line - image is 50x50px
         add(blueKartLabel);
 
-        timer = new Timer(100, this);
+        timer = new Timer(50, this);
         timer.start();
     }
 
@@ -59,8 +59,8 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         //blueKart.updateLocation();
 
         // Draw karts
-        redKartLabel.setBounds(redKart.getLocationX(), redKart.getLocationY(), 50, 50);
         redKartLabel.setIcon(redKart.getImageIcon());
+        redKartLabel.setBounds(redKart.getLocationX(), redKart.getLocationY(), 50, 50);
         blueKartLabel.setBounds(blueKart.getLocationX(), blueKart.getLocationY(), 50, 50);
 
     }
@@ -73,99 +73,135 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
+        int direction = redKart.getDirection();
 
         if (key == KeyEvent.VK_RIGHT) {
             System.out.println("key pressed: RIGHT"); // FOR TESTING
-            if (redKart.getDirection() == 8) {
-                redKart.updateDirection(7);
-            }
-            if (redKart.getDirection() == 7) {
-                redKart.updateDirection(6);
-            }
-            if (redKart.getDirection() == 6) {
-                redKart.updateDirection(5);
-            }
-            if (redKart.getDirection() == 5) {
-                redKart.updateDirection(4);
-            }
             // L - R
-            if (redKart.getDirection() == 4) {
-                redKart.updateSpeed(10);
+            if (direction == 4) {
+                redKart.updateSpeed(10); // accelerate
                 redKart.updateLocation();
             }
-            if (redKart.getDirection() == 12) {
+            else if (direction == 12) {
                 redKart.updateSpeed(-10); // brake
             }
-
+            else if (direction == 15) {
+                redKart.updateDirection(0);
+            }
+            else if (direction > 12 || direction < 4) {
+                redKart.updateDirection(direction + 1);
+            }
+            else if (direction < 12 && direction > 4) {
+                redKart.updateDirection(direction - 1);
+            }
+//            if (redKart.getDirection() == 8) {
+//                redKart.updateDirection(7);
+//            }
+//            else if (redKart.getDirection() == 7) {
+//                redKart.updateDirection(6);
+//            }
+//            else if (redKart.getDirection() == 6) {
+//                redKart.updateDirection(5);
+//            }
+//            else if (redKart.getDirection() == 5) {
+//                redKart.updateDirection(4);
+//            }
         }
 
         if (key == KeyEvent.VK_UP) {
             System.out.println("key pressed: UP"); //FOR TESTING
-            if (redKart.getDirection() == 4) {
-                redKart.updateDirection(3);
-            }
-            if (redKart.getDirection() == 3) {
-                redKart.updateDirection(2);
-            }
-            if (redKart.getDirection() == 2) {
-                redKart.updateDirection(1); // set D - U
-            }
-            if (redKart.getDirection() == 1) {
-                redKart.updateDirection(0); // set D - U
-            }
-            if (redKart.getDirection() == 0) {
-                redKart.updateSpeed(10);
+            if (direction == 0) {
+                redKart.updateSpeed(10); // accelerate
                 redKart.updateLocation();
             }
-            if (redKart.getDirection() == 8) {
+            else if (direction == 8) {
                 redKart.updateSpeed(-10); // brake
             }
+            else if (direction == 15) {
+                redKart.updateDirection(0);
+            }
+            else if (direction > 8 && direction < 15) {
+                redKart.updateDirection(direction + 1);
+            }
+            else if (direction < 8 && direction > 0) {
+                redKart.updateDirection(direction - 1);
+            }
+//            else if (redKart.getDirection() == 4) {
+//                redKart.updateDirection(3);
+//            }
+//            else if (redKart.getDirection() == 3) {
+//                redKart.updateDirection(2);
+//            }
+//            else if (redKart.getDirection() == 2) {
+//                redKart.updateDirection(1);
+//            }
+//            else if (redKart.getDirection() == 1) {
+//                redKart.updateDirection(0);
+//            }
+
         }
 
         if (key == KeyEvent.VK_LEFT) {
             System.out.println("key pressed: LEFT"); //FOR TESTING
-            if (redKart.getDirection() == 0) {
-                redKart.updateDirection(15);
-            }
-            if (redKart.getDirection() == 15) {
-                redKart.updateDirection(14);
-            }
-            if (redKart.getDirection() == 14) {
-                redKart.updateDirection(13);
-            }
-            if (redKart.getDirection() == 13) {
-                redKart.updateDirection(12);
-            }
-            if (redKart.getDirection() == 12) {
+            if (direction == 12) {
                 redKart.updateSpeed(10); // accelerate
                 redKart.updateLocation();
             }
-            if (redKart.getDirection() == 4) {
+            else if (direction == 4) {
                 redKart.updateSpeed(-10); // brake
             }
+            else if (direction == 0) {
+                redKart.updateDirection(15);
+            }
+            else if (direction > 12 || direction < 4) {
+                redKart.updateDirection(direction - 1);
+            }
+            else if (direction < 12 && direction > 4) {
+                redKart.updateDirection(direction + 1);
+            }
+//            if (redKart.getDirection() == 0) {
+//                redKart.updateDirection(15);
+//            }
+//            else if (redKart.getDirection() == 15) {
+//                redKart.updateDirection(14);
+//            }
+//            else if (redKart.getDirection() == 14) {
+//                redKart.updateDirection(13);
+//            }
+//            else if (redKart.getDirection() == 13) {
+//                redKart.updateDirection(12);
+//            }
+
         }
 
         if (key == KeyEvent.VK_DOWN) {
             System.out.println("key pressed: DOWN"); //FOR TESTING
-            if (redKart.getDirection() == 12) {
-                redKart.updateDirection(11);
-            }
-            if (redKart.getDirection() == 11) {
-                redKart.updateDirection(10);
-            }
-            if (redKart.getDirection() == 10) {
-                redKart.updateDirection(9);
-            }
-            if (redKart.getDirection() == 9) {
-                redKart.updateDirection(8);
-            }
-            if (redKart.getDirection() == 8) {
+            if (direction == 8) {
                 redKart.updateSpeed(10); // accelerate
                 redKart.updateLocation();
             }
-            if (redKart.getDirection() == 0) {
+            else if (direction == 0) {
                 redKart.updateSpeed(-10); // brake
             }
+            else if (direction > 0 && direction < 8) {
+                redKart.updateDirection(direction + 1);
+            }
+            else if (direction > 8) {
+                redKart.updateDirection(direction - 1);
+            }
+//            if (redKart.getDirection() == 12) {
+//                redKart.updateDirection(11);
+//            }
+//            else if (redKart.getDirection() == 11) {
+//                redKart.updateDirection(10);
+//            }
+//            else if (redKart.getDirection() == 10) {
+//                redKart.updateDirection(9);
+//            }
+//            else if (redKart.getDirection() == 9) {
+//                redKart.updateDirection(8);
+//            }
+
         }
 
     }
