@@ -7,10 +7,10 @@ import java.awt.event.KeyListener;
 
 public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
-    private ImageIcon redKart;
+    private Kart redKart;
     private JLabel redKartLabel;
 
-    private ImageIcon blueKart;
+    private Kart blueKart;
     private JLabel blueKartLabel;
 
     private Timer timer;
@@ -18,14 +18,14 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
     public RaceTrack() {
         setLayout(null); // suppress panel layout features
 
-        redKart = new ImageIcon(getClass().getResource("/kartPics/redKart4.png"));
-        redKartLabel = new JLabel(redKart);
-        redKartLabel.setBounds(375, 500, 50, 50); // start just behind start line - image is 50x50px
+        redKart = new Kart(1);
+        redKartLabel = new JLabel(redKart.getImageIcon());
+        redKartLabel.setBounds(redKart.getLocationX(), redKart.getLocationY(), 50, 50); // start just behind start line - image is 50x50px
         add(redKartLabel);
 
-        blueKart = new ImageIcon(getClass().getResource("/kartPics/blueKart4.png"));
-        blueKartLabel = new JLabel(blueKart);
-        blueKartLabel.setBounds(375, 550, 50, 50); // start just behind start line - image is 50x50px
+        blueKart = new Kart(2);
+        blueKartLabel = new JLabel(blueKart.getImageIcon());
+        blueKartLabel.setBounds(blueKart.getLocationX(), blueKart.getLocationY(), 50, 50); // start just behind start line - image is 50x50px
         add(blueKartLabel);
 
         timer = new Timer(100, this);
