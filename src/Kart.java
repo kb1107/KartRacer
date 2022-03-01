@@ -1,6 +1,7 @@
 import javax.swing.*;
 
 public class Kart {
+    private int player;
     private ImageIcon imageIcon;
     private int locationX; // x coordinate
     private int locationY; // y coordinate
@@ -9,6 +10,7 @@ public class Kart {
 
     public Kart(int player) {
         if (player == 1) {
+            this.player = player;
             direction = 4; // ensure kart is facing the right way at start
             imageIcon = new ImageIcon(getClass().getResource("/kartPics/redKart" + direction + ".png"));
             // set Kart on start line on creation
@@ -18,6 +20,7 @@ public class Kart {
 
         }
         else {
+            this.player = player;
             direction = 4;
             imageIcon = new ImageIcon(getClass().getResource("/kartPics/blueKart" + direction + ".png"));
             // set kart on start line on creation
@@ -69,9 +72,16 @@ public class Kart {
         }
     }
 
-    public void updateDirection(int newDirection) {
+    public void updateDirection(int newDirection, int player) {
         speed = 0; // kill speed when turning direction
         direction = newDirection;
-        imageIcon = new ImageIcon(getClass().getResource("/kartPics/redKart" + newDirection + ".png"));
+
+        if (player == 1) {
+            imageIcon = new ImageIcon(getClass().getResource("/kartPics/redKart" + newDirection + ".png"));
+        }
+        else {
+            imageIcon = new ImageIcon(getClass().getResource("/kartPics/blueKart" + newDirection + ".png"));
+
+        }
     }
 }

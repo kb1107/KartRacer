@@ -61,6 +61,8 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         // Draw karts
         redKartLabel.setIcon(redKart.getImageIcon());
         redKartLabel.setBounds(redKart.getLocationX(), redKart.getLocationY(), 50, 50);
+
+        blueKartLabel.setIcon(blueKart.getImageIcon());
         blueKartLabel.setBounds(blueKart.getLocationX(), blueKart.getLocationY(), 50, 50);
 
     }
@@ -73,9 +75,10 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        int direction = redKart.getDirection();
 
         if (key == KeyEvent.VK_RIGHT) {
+            int direction = redKart.getDirection();
+
             System.out.println("key pressed: RIGHT"); // FOR TESTING
             // L - R
             if (direction == 4) {
@@ -86,13 +89,13 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
                 redKart.updateSpeed(-10); // brake
             }
             else if (direction == 15) {
-                redKart.updateDirection(0);
+                redKart.updateDirection(0, 1);
             }
             else if (direction > 12 || direction < 4) {
-                redKart.updateDirection(direction + 1);
+                redKart.updateDirection(direction + 1, 1);
             }
             else if (direction < 12 && direction > 4) {
-                redKart.updateDirection(direction - 1);
+                redKart.updateDirection(direction - 1, 1);
             }
 //            if (redKart.getDirection() == 8) {
 //                redKart.updateDirection(7);
@@ -109,6 +112,8 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         }
 
         if (key == KeyEvent.VK_UP) {
+            int direction = redKart.getDirection();
+
             System.out.println("key pressed: UP"); //FOR TESTING
             if (direction == 0) {
                 redKart.updateSpeed(10); // accelerate
@@ -118,13 +123,13 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
                 redKart.updateSpeed(-10); // brake
             }
             else if (direction == 15) {
-                redKart.updateDirection(0);
+                redKart.updateDirection(0, 1);
             }
             else if (direction > 8 && direction < 15) {
-                redKart.updateDirection(direction + 1);
+                redKart.updateDirection(direction + 1, 1);
             }
             else if (direction < 8 && direction > 0) {
-                redKart.updateDirection(direction - 1);
+                redKart.updateDirection(direction - 1, 1);
             }
 //            else if (redKart.getDirection() == 4) {
 //                redKart.updateDirection(3);
@@ -142,6 +147,8 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         }
 
         if (key == KeyEvent.VK_LEFT) {
+            int direction = redKart.getDirection();
+
             System.out.println("key pressed: LEFT"); //FOR TESTING
             if (direction == 12) {
                 redKart.updateSpeed(10); // accelerate
@@ -151,13 +158,13 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
                 redKart.updateSpeed(-10); // brake
             }
             else if (direction == 0) {
-                redKart.updateDirection(15);
+                redKart.updateDirection(15, 1);
             }
             else if (direction > 12 || direction < 4) {
-                redKart.updateDirection(direction - 1);
+                redKart.updateDirection(direction - 1, 1);
             }
             else if (direction < 12 && direction > 4) {
-                redKart.updateDirection(direction + 1);
+                redKart.updateDirection(direction + 1, 1);
             }
 //            if (redKart.getDirection() == 0) {
 //                redKart.updateDirection(15);
@@ -175,6 +182,8 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         }
 
         if (key == KeyEvent.VK_DOWN) {
+            int direction = redKart.getDirection();
+
             System.out.println("key pressed: DOWN"); //FOR TESTING
             if (direction == 8) {
                 redKart.updateSpeed(10); // accelerate
@@ -184,10 +193,10 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
                 redKart.updateSpeed(-10); // brake
             }
             else if (direction > 0 && direction < 8) {
-                redKart.updateDirection(direction + 1);
+                redKart.updateDirection(direction + 1, 1);
             }
             else if (direction > 8) {
-                redKart.updateDirection(direction - 1);
+                redKart.updateDirection(direction - 1, 1);
             }
 //            if (redKart.getDirection() == 12) {
 //                redKart.updateDirection(11);
@@ -204,6 +213,91 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
         }
 
+        if (key == KeyEvent.VK_D) {
+            int direction = blueKart.getDirection();
+
+            System.out.println("key pressed: D"); // FOR TESTING
+            // L - R
+            if (direction == 4) {
+                blueKart.updateSpeed(10); // accelerate
+                blueKart.updateLocation();
+            }
+            else if (direction == 12) {
+                blueKart.updateSpeed(-10); // brake
+            }
+            else if (direction == 15) {
+                blueKart.updateDirection(0, 2);
+            }
+            else if (direction > 12 || direction < 4) {
+                blueKart.updateDirection(direction + 1, 2);
+            }
+            else if (direction < 12 && direction > 4) {
+                blueKart.updateDirection(direction - 1, 2);
+            }
+        }
+
+        if (key == KeyEvent.VK_W) {
+            int direction = blueKart.getDirection();
+
+            System.out.println("key pressed: W"); //FOR TESTING
+            if (direction == 0) {
+                blueKart.updateSpeed(10); // accelerate
+                blueKart.updateLocation();
+            }
+            else if (direction == 8) {
+                blueKart.updateSpeed(-10); // brake
+            }
+            else if (direction == 15) {
+                blueKart.updateDirection(0, 2);
+            }
+            else if (direction > 8 && direction < 15) {
+                blueKart.updateDirection(direction + 1, 2);
+            }
+            else if (direction < 8 && direction > 0) {
+                blueKart.updateDirection(direction - 1, 2);
+            }
+        }
+
+        if (key == KeyEvent.VK_A) {
+            int direction = blueKart.getDirection();
+
+            System.out.println("key pressed: A"); //FOR TESTING
+            if (direction == 12) {
+                blueKart.updateSpeed(10); // accelerate
+                blueKart.updateLocation();
+            }
+            else if (direction == 4) {
+                blueKart.updateSpeed(-10); // brake
+            }
+            else if (direction == 0) {
+                blueKart.updateDirection(15, 2);
+            }
+            else if (direction > 12 || direction < 4) {
+                blueKart.updateDirection(direction - 1, 2);
+            }
+            else if (direction < 12 && direction > 4) {
+                blueKart.updateDirection(direction + 1, 2);
+            }
+        }
+
+        if (key == KeyEvent.VK_S) {
+            int direction = blueKart.getDirection();
+
+            System.out.println("key pressed: S"); //FOR TESTING
+            if (direction == 8) {
+                blueKart.updateSpeed(10); // accelerate
+                blueKart.updateLocation();
+            }
+            else if (direction == 0) {
+                blueKart.updateSpeed(-10); // brake
+            }
+            else if (direction > 0 && direction < 8) {
+                blueKart.updateDirection(direction + 1, 2);
+            }
+            else if (direction > 8) {
+                blueKart.updateDirection(direction - 1, 2);
+            }
+        }
     }
 
     public void keyReleased(KeyEvent e) {
