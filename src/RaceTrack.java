@@ -79,7 +79,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         if (key == KeyEvent.VK_RIGHT) {
             int direction = redKart.getDirection();
 
-            System.out.println("key pressed: RIGHT"); // FOR TESTING
             // L - R
             if (direction == 4) {
                 redKart.updateSpeed(10); // accelerate
@@ -102,7 +101,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         if (key == KeyEvent.VK_UP) {
             int direction = redKart.getDirection();
 
-            System.out.println("key pressed: UP"); //FOR TESTING
             if (direction == 0) {
                 redKart.updateSpeed(10); // accelerate
                 redKart.updateLocation();
@@ -124,7 +122,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         if (key == KeyEvent.VK_LEFT) {
             int direction = redKart.getDirection();
 
-            System.out.println("key pressed: LEFT"); //FOR TESTING
             if (direction == 12) {
                 redKart.updateSpeed(10); // accelerate
                 redKart.updateLocation();
@@ -146,7 +143,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         if (key == KeyEvent.VK_DOWN) {
             int direction = redKart.getDirection();
 
-            System.out.println("key pressed: DOWN"); //FOR TESTING
             if (direction == 8) {
                 redKart.updateSpeed(10); // accelerate
                 redKart.updateLocation();
@@ -165,7 +161,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         if (key == KeyEvent.VK_D) {
             int direction = blueKart.getDirection();
 
-            System.out.println("key pressed: D"); // FOR TESTING
             // L - R
             if (direction == 4) {
                 blueKart.updateSpeed(10); // accelerate
@@ -188,7 +183,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         if (key == KeyEvent.VK_W) {
             int direction = blueKart.getDirection();
 
-            System.out.println("key pressed: W"); //FOR TESTING
             if (direction == 0) {
                 blueKart.updateSpeed(10); // accelerate
                 blueKart.updateLocation();
@@ -210,7 +204,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         if (key == KeyEvent.VK_A) {
             int direction = blueKart.getDirection();
 
-            System.out.println("key pressed: A"); //FOR TESTING
             if (direction == 12) {
                 blueKart.updateSpeed(10); // accelerate
                 blueKart.updateLocation();
@@ -232,7 +225,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         if (key == KeyEvent.VK_S) {
             int direction = blueKart.getDirection();
 
-            System.out.println("key pressed: S"); //FOR TESTING
             if (direction == 8) {
                 blueKart.updateSpeed(10); // accelerate
                 blueKart.updateLocation();

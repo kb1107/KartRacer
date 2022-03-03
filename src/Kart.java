@@ -28,7 +28,9 @@ public class Kart {
             direction = 4;
             imageIcon = new ImageIcon(getClass().getResource("/kartPics/blueKart" + direction + ".png"));
             // set kart on start line on creation
+            targetX = 375;
             locationX = 375;
+            targetY = 550;
             locationY = 550;
             speed = 0;
         }
@@ -38,7 +40,7 @@ public class Kart {
         // L - R
         if (direction == 4) {
             targetX = locationX + (speed / 10);
-            System.out.println("Speed: " + speed);
+            System.out.println("Speed: " + speed); // FOR TESTING
         }
         else if (direction == 0) {
             targetY = locationY - (speed / 10);
