@@ -5,6 +5,8 @@ public class Kart {
     private ImageIcon imageIcon;
     private int locationX; // x coordinate
     private int locationY; // y coordinate
+    private int targetX; // target x coordinate
+    private int targetY; // target y coordinate
     private int speed; // current speed of kart: 0 - 100;
     private int direction;
 
@@ -14,7 +16,9 @@ public class Kart {
             direction = 4; // ensure kart is facing the right way at start
             imageIcon = new ImageIcon(getClass().getResource("/kartPics/redKart" + direction + ".png"));
             // set Kart on start line on creation
+            targetX = 375;
             locationX = 375;
+            targetY = 500;
             locationY = 500;
             speed = 0; // ensure kart is stationary at the start
 
@@ -33,17 +37,26 @@ public class Kart {
     public void updateLocation() {
         // L - R
         if (direction == 4) {
-            locationX += 2 * speed;
+            targetX = locationX + (speed / 10);
+            System.out.println("Speed: " + speed);
         }
-        if (direction == 0) {
-            locationY -= 2 * speed;
+        else if (direction == 0) {
+            targetY = locationY - (speed / 10);
         }
-        if (direction == 12) {
-            locationX -= 2 * speed;
+        else if (direction == 12) {
+            targetX = locationX - (speed / 10);
         }
-        if (direction == 8) {
-            locationY += 2 * speed;
+        else if (direction == 8) {
+            targetY = locationY + (speed / 10);
         }
+
+        if (locationX != targetX) {
+            locationX = targetX;
+        }
+        if (locationY != targetY) {
+            locationY = targetY;
+        }
+
     }
 
     public ImageIcon getImageIcon() {
