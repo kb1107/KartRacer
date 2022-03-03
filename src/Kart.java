@@ -40,7 +40,6 @@ public class Kart {
         // L - R
         if (direction == 4) {
             targetX = locationX + (speed / 10);
-            System.out.println("Speed: " + speed); // FOR TESTING
         }
         else if (direction == 0) {
             targetY = locationY - (speed / 10);
@@ -52,6 +51,29 @@ public class Kart {
             targetY = locationY + (speed / 10);
         }
 
+        // Stop Kart leaving right side of track
+        if (targetX > 750) {
+            targetX = 750;
+            speed = 0; // Scrub off all speed as kart has crashed
+        }
+        // Stop Kart leaving top of track
+        if (targetY < 100) {
+            targetY = 100;
+            speed = 0;
+        }
+        // stop kart leaving left side of track
+        if (targetX < 50) {
+            targetX = 50;
+            speed = 0;
+        }
+        // stop kart leaving bottom of track
+        if (targetY > 550) {
+            targetY = 550;
+            speed = 0;
+        }
+
+
+        // Move kart
         if (locationX != targetX) {
             locationX = targetX;
         }
@@ -59,6 +81,7 @@ public class Kart {
             locationY = targetY;
         }
 
+        System.out.println("Speed: " + speed); // FOR TESTING
     }
 
     public ImageIcon getImageIcon() {
