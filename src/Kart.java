@@ -39,16 +39,64 @@ public class Kart {
     public void updateLocation() {
         // L - R
         if (direction == 4) {
-            targetX = locationX + (speed / 10);
+            targetX = locationX + 2 * (speed / 10);
+        }
+        else if (direction == 3) {
+            targetX = locationX + 2 * (speed / 10);
+            targetY = locationY - 1 * (speed / 10);
+        }
+        else if (direction == 2) {
+            targetX = locationX + 2 * (speed / 10);
+            targetY = locationY - 2 * (speed / 10);
+        }
+        else if (direction == 1) {
+            targetX = locationX + 1 * (speed / 10);
+            targetY = locationY - 2 * (speed / 10);
         }
         else if (direction == 0) {
-            targetY = locationY - (speed / 10);
+            targetY = locationY - 2 * (speed / 10);
+        }
+        else if (direction == 15) {
+            targetX = locationX - 1 * (speed / 10);
+            targetY = locationY - 2 * (speed / 10);
+        }
+        else if (direction == 14) {
+            targetX = locationX - 2 * (speed / 10);
+            targetY = locationY - 2 * (speed / 10);
+        }
+        else if (direction == 13) {
+            targetX = locationX - 2 * (speed / 10);
+            targetY = locationY - 1 * (speed / 10);
         }
         else if (direction == 12) {
-            targetX = locationX - (speed / 10);
+            targetX = locationX - 2 * (speed / 10);
+        }
+        else if (direction == 11) {
+            targetX = locationX - 2 * (speed / 10);
+            targetY = locationY + 1 * (speed / 10);
+        }
+        else if (direction == 10) {
+            targetX = locationX - 2 * (speed / 10);
+            targetY = locationY + 2 * (speed / 10);
+        }
+        else if (direction == 9) {
+            targetX = locationX - 1 * (speed / 10);
+            targetY = locationY + 2 * (speed / 10);
         }
         else if (direction == 8) {
-            targetY = locationY + (speed / 10);
+            targetY = locationY + 2 * (speed / 10);
+        }
+        else if (direction == 7) {
+            targetX = locationX + 1 * (speed / 10);
+            targetY = locationY + 2 * (speed / 10);
+        }
+        else if (direction == 6) {
+            targetX = locationX + 2 * (speed / 10);
+            targetY = locationY + 2 * (speed / 10);
+        }
+        else if (direction == 5) {
+            targetX = locationX + 2 * (speed / 10);
+            targetY = locationY + 1 * (speed / 10);
         }
 
         // Stop Kart leaving right side of track
@@ -111,8 +159,11 @@ public class Kart {
     }
 
     public void updateDirection(int newDirection, int player) {
-        speed = 0; // kill speed when turning direction
         direction = newDirection;
+
+        if (speed > 10) {
+            speed -= 10; // if moving quicker than minimmum speed, scrub off some speed
+        }
 
         if (player == 1) {
             imageIcon = new ImageIcon(getClass().getResource("/kartPics/redKart" + newDirection + ".png"));

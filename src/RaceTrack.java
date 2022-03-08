@@ -50,12 +50,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         g.setColor( c4 );
         g.drawLine( 425, 500, 425, 600 ); // start line
 
-        // Update redKart position
-        //redKart.updateLocation();
-
-        //Update blueKart position
-        //blueKart.updateLocation();
-
         // Draw karts
         redKartLabel.setIcon(redKart.getImageIcon());
         redKartLabel.setBounds((int)redKart.getLocationX(), (int)redKart.getLocationY(), 50, 50);
