@@ -3,10 +3,10 @@ import javax.swing.*;
 public class Kart {
     private int player;
     private ImageIcon imageIcon;
-    private int locationX; // x coordinate
-    private int locationY; // y coordinate
-    private int targetX; // target x coordinate
-    private int targetY; // target y coordinate
+    private double locationX; // x coordinate
+    private double locationY; // y coordinate
+    private double targetX; // target x coordinate
+    private double targetY; // target y coordinate
     private int speed; // current speed of kart: 0 - 100;
     private int direction;
 
@@ -88,11 +88,11 @@ public class Kart {
         return imageIcon;
     }
 
-    public int getLocationX() {
+    public double getLocationX() {
         return locationX;
     }
 
-    public int getLocationY() {
+    public double getLocationY() {
         return locationY;
     }
 

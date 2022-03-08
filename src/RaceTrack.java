@@ -18,16 +18,14 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
     public RaceTrack() {
         setLayout(null); // suppress panel layout features
 
-
-
         redKart = new Kart(1);
         redKartLabel = new JLabel(redKart.getImageIcon());
-        redKartLabel.setBounds(redKart.getLocationX(), redKart.getLocationY(), 50, 50); // start just behind start line - image is 50x50px
+        redKartLabel.setBounds((int)redKart.getLocationX(), (int)redKart.getLocationY(), 50, 50); // start just behind start line - image is 50x50px
         add(redKartLabel);
 
         blueKart = new Kart(2);
         blueKartLabel = new JLabel(blueKart.getImageIcon());
-        blueKartLabel.setBounds(blueKart.getLocationX(), blueKart.getLocationY(), 50, 50); // start just behind start line - image is 50x50px
+        blueKartLabel.setBounds((int)blueKart.getLocationX(), (int)blueKart.getLocationY(), 50, 50); // start just behind start line - image is 50x50px
         add(blueKartLabel);
 
         timer = new Timer(25, this);
@@ -60,15 +58,16 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
         // Draw karts
         redKartLabel.setIcon(redKart.getImageIcon());
-        redKartLabel.setBounds(redKart.getLocationX(), redKart.getLocationY(), 50, 50);
+        redKartLabel.setBounds((int)redKart.getLocationX(), (int)redKart.getLocationY(), 50, 50);
 
         blueKartLabel.setIcon(blueKart.getImageIcon());
-        blueKartLabel.setBounds(blueKart.getLocationX(), blueKart.getLocationY(), 50, 50);
+        blueKartLabel.setBounds((int)blueKart.getLocationX(), (int)blueKart.getLocationY(), 50, 50);
 
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == timer) {
+            redKart.updateLocation();
             repaint();
         }
     }
@@ -82,7 +81,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
             // L - R
             if (direction == 4) {
                 redKart.updateSpeed(10); // accelerate
-                redKart.updateLocation();
             }
             else if (direction == 12) {
                 redKart.updateSpeed(-10); // brake
@@ -103,7 +101,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
             if (direction == 0) {
                 redKart.updateSpeed(10); // accelerate
-                redKart.updateLocation();
             }
             else if (direction == 8) {
                 redKart.updateSpeed(-10); // brake
@@ -124,7 +121,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
             if (direction == 12) {
                 redKart.updateSpeed(10); // accelerate
-                redKart.updateLocation();
             }
             else if (direction == 4) {
                 redKart.updateSpeed(-10); // brake
@@ -145,7 +141,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
             if (direction == 8) {
                 redKart.updateSpeed(10); // accelerate
-                redKart.updateLocation();
             }
             else if (direction == 0) {
                 redKart.updateSpeed(-10); // brake
@@ -164,7 +159,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
             // L - R
             if (direction == 4) {
                 blueKart.updateSpeed(10); // accelerate
-                blueKart.updateLocation();
             }
             else if (direction == 12) {
                 blueKart.updateSpeed(-10); // brake
@@ -185,7 +179,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
             if (direction == 0) {
                 blueKart.updateSpeed(10); // accelerate
-                blueKart.updateLocation();
             }
             else if (direction == 8) {
                 blueKart.updateSpeed(-10); // brake
@@ -206,7 +199,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
             if (direction == 12) {
                 blueKart.updateSpeed(10); // accelerate
-                blueKart.updateLocation();
             }
             else if (direction == 4) {
                 blueKart.updateSpeed(-10); // brake
@@ -227,7 +219,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
             if (direction == 8) {
                 blueKart.updateSpeed(10); // accelerate
-                blueKart.updateLocation();
             }
             else if (direction == 0) {
                 blueKart.updateSpeed(-10); // brake
