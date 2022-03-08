@@ -15,6 +15,8 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
     private Timer timer;
 
+    private boolean raceActive;
+
     public RaceTrack() {
         setLayout(null); // suppress panel layout features
 
@@ -27,6 +29,8 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         blueKartLabel = new JLabel(blueKart.getImageIcon());
         blueKartLabel.setBounds((int)blueKart.getLocationX(), (int)blueKart.getLocationY(), 50, 50); // start just behind start line - image is 50x50px
         add(blueKartLabel);
+
+        raceActive = true;
 
         timer = new Timer(25, this);
         timer.start();
@@ -62,6 +66,7 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == timer) {
             redKart.updateLocation();
+            if (raceActive != checkKartCollisions()) { System.out.println("GAME OVER"); }
             repaint();
         }
     }
@@ -232,5 +237,21 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
     public void keyTyped(KeyEvent e) {
 
+    }
+
+    public boolean checkKartCollisions() {
+        int redX = (int)redKart.getLocationX();
+        int redY = (int)redKart.getLocationY();
+        int blueX = (int)blueKart.getLocationX();
+        int blueY = (int)blueKart.getLocationY();
+
+        if ((blueX < redX + 40) && (blueX > redX - 40) && (blueY < redY + 40) && (blueY > redY - 40)) {
+            System.out.println("CRASH");
+            redKart.updateSpeed(-100);
+            blueKart.updateSpeed(-100);
+            return false;
+        }
+
+        return true;
     }
 }
