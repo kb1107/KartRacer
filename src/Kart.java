@@ -119,6 +119,26 @@ public class Kart {
             targetY = 550;
             speed = 0;
         }
+        // stop kart entering middle from right
+        if (locationX >= 700 && targetX < 700 && locationY < 500 && locationY > 200) {
+            targetX = locationX;
+            speed = 0;
+        }
+        // stop kart entering middle from top
+        if (locationY <= 150 && targetY > 150 && locationX > 100 && locationX < 700) {
+            targetY = locationY;
+            speed = 0;
+        }
+        // stop kart entering middle from left
+        if (locationX <= 100 && targetX > 100 && locationY < 500 && locationY > 200) {
+            targetX = locationX;
+            speed = 0;
+        }
+        // stop kart entering middle from bottom
+        if (locationY >= 500 && targetY < 500 && locationX > 100 && locationX < 700) {
+            targetY = locationY;
+            speed = 0;
+        }
 
 
         // Move kart
@@ -150,6 +170,7 @@ public class Kart {
 
     public void updateSpeed(int dspeed) {
         speed += dspeed;
+
         if (speed > 100) {
             speed = 100;
         }
@@ -170,7 +191,6 @@ public class Kart {
         }
         else {
             imageIcon = new ImageIcon(getClass().getResource("/kartPics/blueKart" + newDirection + ".png"));
-
         }
     }
 }
