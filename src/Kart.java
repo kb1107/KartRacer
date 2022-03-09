@@ -168,6 +168,8 @@ public class Kart {
         return direction;
     }
 
+    public int getSpeed() { return speed; }
+
     public void updateSpeed(int dspeed) {
         speed += dspeed;
 

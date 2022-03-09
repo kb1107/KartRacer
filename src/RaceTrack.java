@@ -61,11 +61,19 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         blueKartLabel.setIcon(blueKart.getImageIcon());
         blueKartLabel.setBounds((int)blueKart.getLocationX(), (int)blueKart.getLocationY(), 50, 50);
 
+        // Draw player 1 game information
+        g.drawString("Player 1:", 155, 215);
+        g.drawString("Speed: " + redKart.getSpeed(), 155, 235);
+
+        // Draw player 2 game information
+        g.drawString("Player 2:", 620, 215);
+        g.drawString("Speed: " + blueKart.getSpeed(), 620, 235);
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == timer) {
             redKart.updateLocation();
+            blueKart.updateLocation();
             if (raceActive != checkKartCollisions()) { System.out.println("GAME OVER"); }
             repaint();
         }
