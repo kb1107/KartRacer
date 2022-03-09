@@ -52,7 +52,9 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         g.drawRect( 100, 150, 650, 400 ); // mid-lane marker
         Color c4 = Color.white;
         g.setColor( c4 );
-        g.drawLine( 425, 500, 425, 600 ); // start line
+        //g.drawLine( 425, 500, 425, 600 ); // start line
+        g.fillRect(425, 501, 10, 99); // start/finish line
+
 
         // Draw karts
         redKartLabel.setIcon(redKart.getImageIcon());
