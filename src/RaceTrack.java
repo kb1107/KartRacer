@@ -13,9 +13,13 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
     private Kart blueKart;
     private JLabel blueKartLabel;
 
+    private JLabel crashLabel;
+    private JLabel winnerLabel;
+    private JButton playAgainButton;
+
     private Timer timer;
 
-    private boolean raceActive;
+    //private boolean raceActive;
 
     public RaceTrack() {
         setLayout(null); // suppress panel layout features
@@ -30,7 +34,17 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         blueKartLabel.setBounds((int)blueKart.getLocationX(), (int)blueKart.getLocationY(), 50, 50); // start just behind start line - image is 50x50px
         add(blueKartLabel);
 
-        raceActive = true;
+        crashLabel = new JLabel("CRASH!!!  GAME OVER");
+        crashLabel.setBounds(200, 250, 400, 50);
+
+        winnerLabel = new JLabel();
+        winnerLabel.setBounds(200, 250, 400, 50);
+
+        playAgainButton = new JButton("Play Again");
+        playAgainButton.setBounds(200, 300, 300, 50);
+        playAgainButton.addActionListener(this);
+
+        //raceActive = true;
 
         timer = new Timer(25, this);
         timer.start();
@@ -82,19 +96,45 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
             redKart.checkLapCounter();
             blueKart.checkLapCounter();
 
-            if (raceActive != checkKartCollisions()) { System.out.println("GAME OVER"); }
+            if (!checkKartCollisions()) {
+                System.out.println("GAME OVER"); // FOR TESTING
+                timer.stop();
+                add(crashLabel);
+                add(playAgainButton);
+            }
 
             if (redKart.getLapsLeft() == 0) {
-                raceActive = false;
-                System.out.println("Player 1 wins!");
+                //raceActive = false;
+                //System.out.println("Player 1 wins!");
+                timer.stop();
+
+                winnerLabel.setText("Player 1 wins!");
+                add(winnerLabel);
+                add(playAgainButton);
             }
 
             if (blueKart.getLapsLeft() == 0) {
-                raceActive = false;
-                System.out.println("Player 2 wins");
+                //raceActive = false;
+                //System.out.println("Player 2 wins");
+                winnerLabel.setText("Player 2 wins!");
+                add(winnerLabel);
+                add(playAgainButton);
             }
+
             repaint();
         }
+
+        if (e.getSource() == playAgainButton) {
+            redKart = new Kart(1);
+            blueKart = new Kart(2);
+            remove(winnerLabel);
+            remove(playAgainButton);
+            remove(crashLabel);
+
+            timer.start();
+        }
+
+        repaint();
     }
 
     public void keyPressed(KeyEvent e) {
