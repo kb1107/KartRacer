@@ -50,6 +50,7 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         Color c3 = Color.yellow;
         g.setColor( c3 );
         g.drawRect( 100, 150, 650, 400 ); // mid-lane marker
+        //g.fillRect(425,101,10, 99); // half-lap marker
         Color c4 = Color.white;
         g.setColor( c4 );
         //g.drawLine( 425, 500, 425, 600 ); // start line
@@ -66,17 +67,32 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         // Draw player 1 game information
         g.drawString("Player 1:", 155, 215);
         g.drawString("Speed: " + redKart.getSpeed(), 155, 235);
+        g.drawString("Laps: " + redKart.getLapsLeft(), 155, 255);
 
         // Draw player 2 game information
         g.drawString("Player 2:", 620, 215);
         g.drawString("Speed: " + blueKart.getSpeed(), 620, 235);
+        g.drawString("Laps: " + blueKart.getLapsLeft(), 620, 255);
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == timer) {
             redKart.updateLocation();
             blueKart.updateLocation();
+            redKart.checkLapCounter();
+            blueKart.checkLapCounter();
+
             if (raceActive != checkKartCollisions()) { System.out.println("GAME OVER"); }
+
+            if (redKart.getLapsLeft() == 0) {
+                raceActive = false;
+                System.out.println("Player 1 wins!");
+            }
+
+            if (blueKart.getLapsLeft() == 0) {
+                raceActive = false;
+                System.out.println("Player 2 wins");
+            }
             repaint();
         }
     }
@@ -256,7 +272,8 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         int blueY = (int)blueKart.getLocationY();
 
         if ((blueX < redX + 40) && (blueX > redX - 40) && (blueY < redY + 40) && (blueY > redY - 40)) {
-            System.out.println("CRASH");
+            System.out.println("CRASH"); // FOR TESTING
+            // Scrub off all speed
             redKart.updateSpeed(-100);
             blueKart.updateSpeed(-100);
             return false;

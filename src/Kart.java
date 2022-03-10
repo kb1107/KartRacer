@@ -9,32 +9,55 @@ public class Kart {
     private double targetY; // target y coordinate
     private int speed; // current speed of kart: 0 - 100;
     private int direction;
+    private int lapsLeft; // holds the number of remaining laps for the kart
+    private boolean halfLapFlag; // true when a kart has crossed half-lap marker - used to stop cheating and laps being counted incorrectly
 
     public Kart(int player) {
+        direction = 4; // ensure kart is facing the right way at start
+        speed = 0; // ensure kart is stationary at the start
+        lapsLeft = 3; // Races are 3 laps long
+        halfLapFlag = false;
+
         if (player == 1) {
             this.player = player;
-            direction = 4; // ensure kart is facing the right way at start
             imageIcon = new ImageIcon(getClass().getResource("/kartPics/redKart" + direction + ".png"));
             // set Kart on start line on creation
             targetX = 375;
             locationX = 375;
             targetY = 500;
             locationY = 500;
-            speed = 0; // ensure kart is stationary at the start
 
         }
         else {
             this.player = player;
-            direction = 4;
             imageIcon = new ImageIcon(getClass().getResource("/kartPics/blueKart" + direction + ".png"));
             // set kart on start line on creation
             targetX = 375;
             locationX = 375;
             targetY = 550;
             locationY = 550;
-            speed = 0;
         }
     }
+
+    public ImageIcon getImageIcon() {
+        return imageIcon;
+    }
+
+    public double getLocationX() {
+        return locationX;
+    }
+
+    public double getLocationY() {
+        return locationY;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public int getSpeed() { return speed; }
+
+    public int getLapsLeft() { return lapsLeft; }
 
     public void updateLocation() {
         // L - R
@@ -148,27 +171,7 @@ public class Kart {
         if (locationY != targetY) {
             locationY = targetY;
         }
-
-        System.out.println("Speed: " + speed); // FOR TESTING
     }
-
-    public ImageIcon getImageIcon() {
-        return imageIcon;
-    }
-
-    public double getLocationX() {
-        return locationX;
-    }
-
-    public double getLocationY() {
-        return locationY;
-    }
-
-    public int getDirection() {
-        return direction;
-    }
-
-    public int getSpeed() { return speed; }
 
     public void updateSpeed(int dspeed) {
         speed += dspeed;
@@ -193,6 +196,18 @@ public class Kart {
         }
         else {
             imageIcon = new ImageIcon(getClass().getResource("/kartPics/blueKart" + newDirection + ".png"));
+        }
+    }
+
+    public void checkLapCounter() {
+        // check finish line
+        if (halfLapFlag && (locationX < 435) && (locationX + 50 > 425) && (locationY < 600) && (locationY + 50 > 501)) {
+            halfLapFlag = false;
+            lapsLeft--;
+        }
+        // check half lap marker
+        else if ((locationX < 435) && (locationX + 50 > 425) && (locationY < 200) && (locationY + 50 > 101)) {
+            halfLapFlag = !halfLapFlag;
         }
     }
 }
