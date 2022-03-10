@@ -15,7 +15,7 @@ public class Kart {
     public Kart(int player) {
         direction = 4; // ensure kart is facing the right way at start
         speed = 0; // ensure kart is stationary at the start
-        lapsLeft = 1; // TESTING 1 Races are 3 laps long
+        lapsLeft = 3; // TESTING 1 Races are 3 laps long
         halfLapFlag = false;
 
         if (player == 1) {
@@ -200,13 +200,13 @@ public class Kart {
 
     public void checkLapCounter() {
         // check finish line
-        if (halfLapFlag && (locationX < 435) && (locationX + 50 > 425) && (locationY < 600) && (locationY + 50 > 501)) {
+        if (halfLapFlag && (locationX < 435) && (locationX + 50 > 425) && (locationY < 610) && (locationY + 50 > 500)) {
             halfLapFlag = false;
             lapsLeft--;
         }
         // check half lap marker
-        else if ((locationX < 435) && (locationX + 50 > 425) && (locationY < 200) && (locationY + 50 > 101)) {
-            halfLapFlag = !halfLapFlag; // this prevents laps being counted when karts cross the finish line the wrong way       }
+        else if ((locationX < 435) && (locationX + 50 > 425) && (locationY < 210) && (locationY + 50 > 100)) {
+            halfLapFlag = !halfLapFlag; // this prevents laps being counted when karts cross the finish line the wrong way
         }
     }
 }
