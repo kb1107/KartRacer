@@ -19,8 +19,6 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
     private Timer timer;
 
-    //private boolean raceActive;
-
     public RaceTrack() {
         setLayout(null); // suppress panel layout features
 
@@ -41,10 +39,8 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         winnerLabel.setBounds(200, 250, 400, 50);
 
         playAgainButton = new JButton("Play Again");
-        playAgainButton.setBounds(200, 300, 300, 50);
+        playAgainButton.setBounds(200, 300, 150, 50);
         playAgainButton.addActionListener(this);
-
-        //raceActive = true;
 
         timer = new Timer(25, this);
         timer.start();
@@ -97,28 +93,23 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
             blueKart.checkLapCounter();
 
             if (!checkKartCollisions()) {
-                System.out.println("GAME OVER"); // FOR TESTING
-                timer.stop();
                 add(crashLabel);
                 add(playAgainButton);
+                timer.stop();
             }
 
             if (redKart.getLapsLeft() == 0) {
-                //raceActive = false;
-                //System.out.println("Player 1 wins!");
-                timer.stop();
-
                 winnerLabel.setText("Player 1 wins!");
                 add(winnerLabel);
                 add(playAgainButton);
+                timer.stop();
             }
 
             if (blueKart.getLapsLeft() == 0) {
-                //raceActive = false;
-                //System.out.println("Player 2 wins");
                 winnerLabel.setText("Player 2 wins!");
                 add(winnerLabel);
                 add(playAgainButton);
+                timer.stop();
             }
 
             repaint();
