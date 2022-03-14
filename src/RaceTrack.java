@@ -50,13 +50,14 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
 
         super.paintComponent(g);
         // Draw track
+        Color c2 = Color.black;
+        g.setColor( c2 );
+        g.fillRect( 50, 100, 750, 500 ); // outer edge
+        g.drawRect( 150, 200, 550, 300 ); // inner edge
         Color c1 = Color.green;
         g.setColor( c1 );
         g.fillRect( 150, 200, 550, 300 ); // grass
-        Color c2 = Color.black;
-        g.setColor( c2 );
-        g.drawRect( 50, 100, 750, 500 ); // outer edge
-        g.drawRect( 150, 200, 550, 300 ); // inner edge
+
         Color c3 = Color.yellow;
         g.setColor( c3 );
         g.drawRect( 100, 150, 650, 400 ); // mid-lane marker
@@ -78,6 +79,8 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         g.drawString("Player 1:", 155, 215);
         g.drawString("Speed: " + redKart.getSpeed(), 155, 235);
         g.drawString("Laps: " + redKart.getLapsLeft(), 155, 255);
+        // FOR TESTING
+        g.drawString("Half lap flag: " + redKart.getHalfLapFlag(), 155, 275);
 
         // Draw player 2 game information
         g.drawString("Player 2:", 620, 215);

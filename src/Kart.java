@@ -15,7 +15,7 @@ public class Kart {
     public Kart(int player) {
         direction = 4; // ensure kart is facing the right way at start
         speed = 0; // ensure kart is stationary at the start
-        lapsLeft = 3; // TESTING 1 Races are 3 laps long
+        lapsLeft = 3; // Races are 3 laps long
         halfLapFlag = false;
 
         if (player == 1) {
@@ -58,6 +58,8 @@ public class Kart {
     public int getSpeed() { return speed; }
 
     public int getLapsLeft() { return lapsLeft; }
+
+    public boolean getHalfLapFlag() { return halfLapFlag; }
 
     public void updateLocation() {
         // L - R
@@ -122,24 +124,14 @@ public class Kart {
             targetY = locationY + 1 * (speed / 10);
         }
 
-        // Stop Kart leaving right side of track
-        if (targetX > 750) {
-            targetX = 750;
+        // Stop Kart leaving right or left side of track
+        if (targetX > 750 || targetX < 50) {
+            targetX = locationX;
             speed = 0; // Scrub off all speed as kart has crashed
         }
-        // Stop Kart leaving top of track
-        if (targetY < 100) {
-            targetY = 100;
-            speed = 0;
-        }
-        // stop kart leaving left side of track
-        if (targetX < 50) {
-            targetX = 50;
-            speed = 0;
-        }
-        // stop kart leaving bottom of track
-        if (targetY > 550) {
-            targetY = 550;
+        // Stop Kart leaving top or bottom of track
+        if (targetY < 100 || targetY > 550) {
+            targetY = locationY;
             speed = 0;
         }
         // stop kart entering middle from right
@@ -206,7 +198,8 @@ public class Kart {
         }
         // check half lap marker
         else if ((locationX < 435) && (locationX + 50 > 425) && (locationY < 210) && (locationY + 50 > 100)) {
-            halfLapFlag = !halfLapFlag; // this prevents laps being counted when karts cross the finish line the wrong way
+            halfLapFlag = true; // this prevents laps being counted when karts cross the finish line the wrong way
+
         }
     }
 }
