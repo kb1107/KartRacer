@@ -3,6 +3,7 @@ import javax.swing.*;
 public class Kart {
     private int player;
     private ImageIcon imageIcon;
+    private ImageIcon[] kartImages; // holds the 16 rotations of the kart image
     private double locationX; // x coordinate
     private double locationY; // y coordinate
     private double targetX; // target x coordinate
@@ -17,10 +18,15 @@ public class Kart {
         speed = 0; // ensure kart is stationary at the start
         lapsLeft = 3; // Races are 3 laps long
         halfLapFlag = false;
+        kartImages = new ImageIcon[16];
+
 
         if (player == 1) {
             this.player = player;
-            imageIcon = new ImageIcon(getClass().getResource("/kartPics/redKart" + direction + ".png"));
+            for (int i=0; i < kartImages.length; i++){
+                kartImages[i] = new ImageIcon(getClass().getResource("/kartPics/redKart" + i + ".png"));
+            }
+            imageIcon = kartImages[direction];
             // set Kart on start line on creation
             targetX = 375;
             locationX = 375;
@@ -28,9 +34,13 @@ public class Kart {
             locationY = 500;
 
         }
+        // Player 2
         else {
             this.player = player;
-            imageIcon = new ImageIcon(getClass().getResource("/kartPics/blueKart" + direction + ".png"));
+            for (int i=0; i < kartImages.length; i++) {
+                kartImages[i] = new ImageIcon(getClass().getResource("/kartPics/blueKart" + i + ".png"));
+            }
+            imageIcon = kartImages[direction];
             // set kart on start line on creation
             targetX = 375;
             locationX = 375;
@@ -183,10 +193,10 @@ public class Kart {
         }
 
         if (player == 1) {
-            imageIcon = new ImageIcon(getClass().getResource("/kartPics/redKart" + newDirection + ".png"));
+            imageIcon = kartImages[direction];
         }
         else {
-            imageIcon = new ImageIcon(getClass().getResource("/kartPics/blueKart" + newDirection + ".png"));
+            imageIcon = kartImages[direction];
         }
     }
 
