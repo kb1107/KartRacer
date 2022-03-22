@@ -33,13 +33,13 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         add(blueKartLabel);
 
         crashLabel = new JLabel("CRASH!!!  GAME OVER");
-        crashLabel.setBounds(200, 250, 400, 50);
+        crashLabel.setBounds(200, 350, 400, 50);
 
         winnerLabel = new JLabel();
-        winnerLabel.setBounds(200, 250, 400, 50);
+        winnerLabel.setBounds(200, 350, 400, 50);
 
         playAgainButton = new JButton("Play Again");
-        playAgainButton.setBounds(200, 300, 150, 50);
+        playAgainButton.setBounds(200, 400, 150, 50);
         playAgainButton.addActionListener(this);
 
         timer = new Timer(25, this);
@@ -76,11 +76,12 @@ public class RaceTrack extends JPanel implements ActionListener, KeyListener {
         blueKartLabel.setBounds((int)blueKart.getLocationX(), (int)blueKart.getLocationY(), 50, 50);
 
         // Draw player 1 game information
+        g.setColor(c2);
         g.drawString("Player 1:", 155, 215);
         g.drawString("Speed: " + redKart.getSpeed(), 155, 235);
         g.drawString("Laps: " + redKart.getLapsLeft(), 155, 255);
         // FOR TESTING
-        g.drawString("Half lap flag: " + redKart.getHalfLapFlag(), 155, 275);
+        //g.drawString("Half lap flag: " + redKart.getHalfLapFlag(), 155, 275);
 
         // Draw player 2 game information
         g.drawString("Player 2:", 620, 215);
