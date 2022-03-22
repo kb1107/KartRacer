@@ -192,12 +192,7 @@ public class Kart {
             speed -= 10; // if moving quicker than minimmum speed, scrub off some speed
         }
 
-        if (player == 1) {
-            imageIcon = kartImages[direction];
-        }
-        else {
-            imageIcon = kartImages[direction];
-        }
+        imageIcon = kartImages[direction];
     }
 
     public void checkLapCounter() {
